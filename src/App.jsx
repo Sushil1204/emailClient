@@ -1,10 +1,13 @@
 import React from 'react';
+import Filter from './components/Filter';
 
 function App() {
 
   return (
     <>
-    Welcome
+      <div className="container">
+        <Filter/>
+      </div>
     </>
   )
 }
