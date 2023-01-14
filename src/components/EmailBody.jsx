@@ -1,6 +1,20 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
+import axios from "axios";
 
 const EmailBody = () => {
+  const [emailBody, setEmailBody] = useState();
+
+  const getEmails = async(id) => {
+    const response = await axios.get(`https://my-json-server.typicode.com/Sushil1204/database/list?id=${id}`);
+    console.log(`https://my-json-server.typicode.com/Sushil1204/database/list?id=${id}`);
+    if(response.status === 200){
+      setEmailBody(response.data);
+    }
+  }
+
+  useEffect(()=>{
+    getEmails(2);
+},[])
   return (
     <section className="flex gap-4 h-max bg-[#F2F2F2] text-[#636363] border-2 border-solid border-[#CFD2DC] rounded-md p-4 m-0">
       <div className="flex flex-col gap-4">
@@ -20,8 +34,8 @@ const EmailBody = () => {
             </button>
           </div>
         </div>
-        <div className="my-4">
-          <p className="text-sd">
+        <div className="my-4" dangerouslySetInnerHTML={emailBody && {__html: emailBody.body}}>
+          {/* <p className="text-sd">
             Contrary to popular belief, Lorem Ipsum is not simply random text.
             It has roots in a piece of classical Latin literature from 45 BC,
             making it over 2000 years old. Richard McClintock, a Latin professor
@@ -39,7 +53,7 @@ const EmailBody = () => {
             Malorum" by Cicero are also reproduced in their exact original form,
             accompanied by English versions from the 1914 translation by H.
             Rackham.
-          </p>
+          </p> */}
         </div>
       </div>
     </section>
