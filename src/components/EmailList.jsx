@@ -59,14 +59,6 @@ const EmailList = () => {
     }
   };
 
-  const addSelectedClass = (id) => {
-    let element = document.getElementsByClassName('emailCard');
-    for (let i = 0; i < element.length; i++) {
-      element[i].classList.remove("opened");
-    }
-    document.getElementById(`email_${id}`).classList.add("opened");
-  };
-
   const renderEmail = () => {
     fetchSessionStorage();
 
@@ -78,7 +70,6 @@ const EmailList = () => {
             readEmailList[email.id] !== email.id ?
               (<div className='emailCard' id={'email_' + email.id} key={email.id} onClick={() => {
                 dispatch(openEmail(email));
-                addSelectedClass(email.id);
               }}>
                 <div className="flex gap-4 border-2 border-solid border-[#CFD2DC] mb-4 hover:cursor-pointer hover:border-[#E54065]">
                   <div className="my-2 ml-8">
@@ -125,7 +116,6 @@ const EmailList = () => {
             readEmailList[email.id] === email.id ?
               (<div className='emailCard' id={'email_' + email.id} key={email.id} onClick={() => {
                 dispatch(openEmail(email));
-                addSelectedClass(email.id);
               }}>
                 <div className="flex gap-4 border-2 border-solid border-[#CFD2DC] mb-4 hover:cursor-pointer hover:border-[#E54065]">
                   <div className="my-2 ml-8">
@@ -172,7 +162,6 @@ const EmailList = () => {
           favoriteEmailList[email.id] === email.id ?
             (<div className='emailCard' id={'email_' + email.id} key={email.id} onClick={() => {
               dispatch(openEmail(email));
-              addSelectedClass(email.id);
             }}>
               <div className="flex gap-4 border-2 border-solid border-[#CFD2DC] mb-4 hover:cursor-pointer hover:border-[#E54065]">
                 <div className="my-2 ml-8">
@@ -215,7 +204,6 @@ const EmailList = () => {
         <div className='emailCard' key={email.id} id={"email_" + email.id}
         onClick={() => {
           dispatch(openEmail(email));
-          addSelectedClass(email.id);
         }}>
           <div className="flex gap-4 border-2 border-solid border-[#CFD2DC] mb-4 hover:cursor-pointer hover:border-[#E54065]">
             <div className="my-2 ml-8">
